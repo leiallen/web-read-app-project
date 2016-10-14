@@ -13,7 +13,7 @@
             background: #e9dfc7;
         }
         
-        .content-container {
+        .content {
             padding: 15px;
             font-size: 14px;
             line-height: 31px;
@@ -39,7 +39,7 @@
             background: #000;
             border: 1px solid #858382;
             opacity: 0.9;
-            margin: 10px auto;
+            margin: 10px auto 70px;
             border-radius: 8px;
         }
         
@@ -171,16 +171,95 @@
             top: 25px;
             font-size: 10px;
         }
+        .control-panel {
+            position:fixed;
+            bottom:70px;
+            left:0;
+            width:100%;
+            height:135px;
+            color:#fff;
+            background:none;
+
+        }
+        .control-panel-bk {
+            background:#000;
+            opacity:0.9;
+        }
+        .panel-child {
+            padding:5px 10px;
+            margin-top:15px;
+        }
+        .panel-child span {
+            display:inline-block;
+            padding-right:20px;
+            padding-left:10px;
+        }
+        .large-btn, .small-btn {
+            padding:5px 40px;
+            border:1px solid #8c8c8c;
+            border-radius:16px;
+            background:none;
+            display:inline-block;
+            color:#fff;
+        }
+        .small-btn {
+            margin-left:15px;
+        }
+        .bk-container {
+            position:relative;
+            width:30px;
+            height:30px;
+            border-radius:15px;
+            
+            display:inline-block;
+            vertical-align: -14px;
+            margin-left: 8px;
+        }
+        .colora {
+            background:#f7eee5;
+        }
+        .colorb {
+            background:#e9dfc7;
+        }
+        .colorc {
+            background:#a4a4a4;
+        }
+        .colord {
+            background:#cdefce;
+        }
+        .colore {
+            background:#283548;
+        }
+        .bk-container-current {
+            position:absolute;
+            width:32px;
+            height:32px;
+            top:-2px;
+            left:-2px;
+            border-radius:16px;
+            border:1px solid #ff7800;
+            background:none;
+        }
+        .touch-area {
+            position:fixed;
+            top:110px;
+            left:0;
+            width:100%;
+            height:400px;
+            background:none;
+
+        }
     </style>
 </head>
 
 <body>
     <div class="root">
+        <div class="touch-area"></div>
         <div class="top-nav">
             <div class="back-icon"></div>
             <span class="back-tit">返回书架</span>
         </div>
-        <div class="content-container">
+        <div class="content">
             <h4 class="article-tit">从朱莉家出来后</h4>
             <p>从朱莉家出来后，盛夏在招待所将就了一夜。闺蜜小雅想让盛夏住她家去，但盛夏没同意。从朱莉家出来后，盛夏在招待所将就了一夜。闺蜜小雅想让盛夏住她家去，但盛夏没同意。从朱莉家出来后，盛夏在招待所将就了一夜。闺蜜小雅想让盛夏住她家去，但盛夏没同意。从朱莉家出来后，盛夏在招待所将就了一夜。闺蜜小雅想让盛夏住她家去，但盛夏没同意。</p>
             <p>从朱莉家出来后，盛夏在招待所将就了一夜。闺蜜小雅想让盛夏住她家去，但盛夏没同意。从朱莉家出来后，盛夏在招待所将就了一夜。闺蜜小雅想让盛夏住她家去，但盛夏没同意。从朱莉家出来后，盛夏在招待所将就了一夜。闺蜜小雅想让盛夏住她家去，但盛夏没同意。从朱莉家出来后，盛夏在招待所将就了一夜。闺蜜小雅想让盛夏住她家去，但盛夏没同意。</p>
@@ -192,7 +271,34 @@
                 <li class="next-button">上一章</li>
             </ul>
         </div>
-        <div class="bottom-nav-bk bottom-nav"></div>
+        <div class="control-panel control-panel-bk" style="display:none;"></div>
+        <div class="control-panel" style="display:none;">
+            <div class="panel-child">
+                <span>字号</span>
+                <button class="large-btn">大</button>
+                <button class="small-btn">小</button>
+            </div>
+            <div class="panel-child">
+                <span>背景</span>
+                <div class="bk-container colora">
+                    <div class="bk-container-current" ></div>
+                </div>
+                <div class="bk-container colorb">
+                    <div class="bk-container-current" style="display:none;"></div>
+                </div>
+                <div class="bk-container colorc">
+                    <div class="bk-container-current" style="display:none;"></div>
+                </div>
+                <div class="bk-container colord">
+                    <div class="bk-container-current" style="display:none;"></div>
+                </div>
+                <div class="bk-container colore">
+                    <div class="bk-container-current" style="display:none;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-nav bottom-nav-bk"></div>
         <div class="bottom-nav">
             <div class="item" id="menu-button">
                 <div class="item-warp">
@@ -202,7 +308,7 @@
             </div>
             <div class="item" id="font-button">
                 <div class="item-warp">
-                    <div class="font-icon"></div>
+                    <div class="font-icon" id="font-icon"></div>
                     <div class="font-text">字体</div>
                 </div>
             </div>
@@ -215,8 +321,9 @@
                     <div class="day-icon"></div>
                     <div class="day-text">白天</div>
                 </div>
-            </div>
+            </div>           
         </div>
+    </div>
 
         <script src="lib/zepto.min.js "></script>
         <script>
@@ -226,6 +333,70 @@
         <script src="js/jquery.jsonp.js "></script>
 
         <script>
+            (function(){
+
+
+                var Dom = {
+                    top_nav : $('.top-nav'),
+                    bottom_nav : $('.bottom-nav'),
+                    font_button : $('#font-button'),
+                    font_icon : $('#font-icon'),
+                    control_panel : $('.control-panel')
+                };
+                var Win = $(window);
+                var Doc = $(document);
+                function main(){
+                    //入口函数
+                    eventHandle();
+                }
+                function readerModel(){
+                    //前后端数据交互
+
+                }
+
+                function readerBaseFrame(){
+                    //初始结构处理
+
+                }
+
+                function eventHandle(){
+                    $('.touch-area').click(function(){
+                        //if(Dom.top_nav.css('display')=='none'){
+                            //Dom.top_nav.show();
+                            //Dom.bottom_nav.show();
+                        //}else{
+                            //Dom.top_nav.hide();
+                            //Dom.bottom_nav.hide();
+                        //}
+                        Dom.top_nav.toggle();
+                        Dom.bottom_nav.toggle();
+                    });
+
+                    Win.scroll(function(){
+                        Dom.top_nav.hide();
+                        Dom.bottom_nav.hide();
+                        Dom.font_icon.removeClass('change-icon-color'); 
+                        Dom.control_panel.hide();
+
+                    });
+
+                    Dom.font_button.click(function(){
+                        if(Dom.control_panel.css('display')=='none'){
+                           Dom.font_icon.addClass('change-icon-color'); 
+                           Dom.control_panel.show();
+                        }else{
+                            Dom.font_icon.removeClass('change-icon-color'); 
+                            Dom.control_panel.hide();
+                        }
+                    });
+                    
+
+
+                }
+
+                main();
+
+            }) ();
         </script>
 </body>
 
